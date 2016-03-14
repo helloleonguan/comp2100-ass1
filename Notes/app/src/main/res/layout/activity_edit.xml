@@ -13,6 +13,7 @@
     -->
 
     <LinearLayout
+        android:id="@+id/editMode"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -27,7 +28,7 @@
         android:textColor="#000000"
         android:textColorHint="#666666"
         android:hint="@string/hint_for_heading_input"
-        android:gravity="top"/>
+        android:gravity="top" />
 
     <EditText
         android:id="@+id/EditTextForMainContent"
@@ -54,7 +55,8 @@
             android:text="SAVE"
             android:background="#DDDDDD"
             android:textSize="20sp"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:onClick="saveNote"/>
 
         <Button
             android:id="@+id/deleteEditBtn"
@@ -64,7 +66,8 @@
             android:text="DELETE"
             android:background="#DDDDDD"
             android:textSize="20sp"
-            android:textColor="#ff0000"/>
+            android:textColor="#ff0000"
+            android:onClick="deleteNote"/>
 
     </LinearLayout>
     </LinearLayout>
@@ -76,10 +79,11 @@
 
 
     <LinearLayout
+        android:id="@+id/viewMode"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/TextViewForHeading"
@@ -110,7 +114,8 @@
                 android:layout_weight="1"
                 android:text="EDIT"
                 android:background="#DDDDDD"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:onClick="editNote"/>
 
             <Button
                 android:id="@+id/deleteViewBtn"
@@ -120,7 +125,8 @@
                 android:text="DELETE"
                 android:background="#DDDDDD"
                 android:textSize="20sp"
-                android:textColor="#ff0000"/>
+                android:textColor="#ff0000"
+                android:onClick="deleteNote"/>
         </LinearLayout>
 
     </LinearLayout>
