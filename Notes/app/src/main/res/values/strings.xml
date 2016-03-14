@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Notes</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_edit">EditActivity</string>
+    <string name="title_activity_edit">Editing Notes</string>
 
     <string name="hint_for_content_input">Please write your main content of the note here...</string>
     <string name="hint_for_heading_input">Please write your heading of the note here...</string>
