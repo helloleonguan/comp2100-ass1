@@ -15,6 +15,7 @@
         android:textColor="#1B5E20"
         android:background="#DDDDDD"
         android:textSize="20sp"
+        android:layout_marginBottom="25dp"
         android:onClick="newNote"/>
 
 
