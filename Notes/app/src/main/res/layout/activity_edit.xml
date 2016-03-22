@@ -2,10 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="#FFFFFF"
     tools:context="com.example.administrator.notes.EditActivity">
 
     <!--
@@ -24,22 +21,32 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:textColorHint="#666666"
+        android:textSize="24sp"
+        android:textColor="#EEEEEE"
+        android:textColorHint="#EEEEEE"
+        android:background="@drawable/note_heading_ve_mode"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
         android:hint="@string/hint_for_heading_input"
-        android:gravity="top" />
+        android:gravity="top"
+        android:textCursorDrawable="@null"/>
 
     <EditText
         android:id="@+id/EditTextForMainContent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:textColorHint="#666666"
+        android:background="@drawable/note_content_ve_mode"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:textSize="20sp"
+        android:textColor="#444444"
+        android:textColorHint="#444444"
         android:hint="@string/hint_for_content_input"
-        android:gravity="top"/>
+        android:gravity="top"
+        android:textCursorDrawable="@null"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -90,16 +97,26 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:textColor="#000000"
-            android:textSize="18sp"/>
+            android:textColor="#EEEEEE"
+            android:background="@drawable/note_heading_ve_mode"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:textSize="24sp"
+            android:scrollbars="vertical"/>
 
         <TextView
             android:id="@+id/TextViewForContent"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="5"
-            android:textColor="#000000"
-            android:textSize="18sp"/>
+            android:textColor="#444444"
+            android:background="@drawable/note_content_ve_mode"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:textSize="20sp"
+            android:scrollbars="vertical"/>
 
         <LinearLayout
             android:layout_width="match_parent"

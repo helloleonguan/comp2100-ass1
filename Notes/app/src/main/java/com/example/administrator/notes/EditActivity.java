@@ -1,20 +1,23 @@
 package com.example.administrator.notes;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class EditActivity extends AppCompatActivity {
+public class EditActivity extends Activity {
 
     public String noteID;
 
@@ -38,7 +41,7 @@ public class EditActivity extends AppCompatActivity {
         int mode; // if it's 0, then editing mode. If it's 1, then viewing mode. Otherwise, error.
 
         noteID = getIntent().getStringExtra("noteID");
-        mode = getIntent().getIntExtra("mode",2);
+        mode = getIntent().getIntExtra("mode", 2);
 
         edit = (LinearLayout) findViewById(R.id.editMode);
         view = (LinearLayout) findViewById(R.id.viewMode);
@@ -51,6 +54,9 @@ public class EditActivity extends AppCompatActivity {
         tvContent = (TextView) findViewById(R.id.TextViewForContent);
         editViewButton = (Button) findViewById(R.id.editViewBtn);
         deleteViewButton = (Button) findViewById(R.id.deleteViewBtn);
+
+        tvHeading.setMovementMethod(new ScrollingMovementMethod());
+        tvContent.setMovementMethod(new ScrollingMovementMethod());
 
         SharedPreferences data = getSharedPreferences(MainActivity.FILE_NAME, MODE_PRIVATE);
 

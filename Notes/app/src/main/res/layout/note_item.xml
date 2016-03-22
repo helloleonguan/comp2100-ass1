@@ -7,18 +7,26 @@
         android:id="@+id/itemHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
+        android:textColor="#EEEEEE"
         android:textSize="20sp"
-        android:background="#ffff00"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:background="@drawable/note_main_heading"
+        android:lines="1"
+        android:ellipsize="end"
         />
 
     <TextView
         android:id="@+id/itemContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#666666"
+        android:textColor="#444444"
         android:textSize="14sp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:background="@drawable/note_main_content"
         android:lines="2"
+        android:ellipsize="end"
         />
 
     <TextView
