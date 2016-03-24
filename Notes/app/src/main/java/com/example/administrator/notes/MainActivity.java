@@ -3,14 +3,13 @@ package com.example.administrator.notes;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.PopupMenu;
 import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
@@ -20,6 +19,9 @@ import java.util.Map;
 
 public class MainActivity extends Activity {
     public static final String FILE_NAME = "MyNotes";
+    public static final String NOTE_HEADING = "heading";
+    public static final String NOTE_CONTENT = "content";
+    public static final String NOTE_COLOR = "color";
     public int serial_number;
 
     GridView gridview;
@@ -49,17 +51,18 @@ public class MainActivity extends Activity {
 
         List<Map<String, Object>> listItems = new ArrayList<Map<String, Object>>();
         for(int i = 0; i <= serial_number; i++){
-            if (data.contains(i + "heading") && data.contains(i + "content")) {
+            if (data.contains(i + NOTE_HEADING) && data.contains(i + NOTE_CONTENT)) {
                 Map<String, Object> listItem = new HashMap<>();
-                listItem.put("heading", data.getString(i + "heading", ""));
-                listItem.put("content", data.getString(i + "content", ""));
+                listItem.put(NOTE_HEADING, data.getString(i + NOTE_HEADING, ""));
+                listItem.put(NOTE_CONTENT, data.getString(i + NOTE_CONTENT, ""));
                 listItem.put("ID", i);
                 listItems.add(listItem);
             }
         }
 
-        gridview.setAdapter(new SimpleAdapter(this,listItems,R.layout.note_item,new String[]{"heading", "content","ID"},
-                new int[]{R.id.itemHeading,R.id.itemContent,R.id.itemID}));
+        gridview.setAdapter(new SimpleAdapter(this, listItems, R.layout.note_item, new String[]{NOTE_HEADING, NOTE_CONTENT, "ID"},
+                new int[]{R.id.itemHeading, R.id.itemContent, R.id.itemID}));
+
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
@@ -71,22 +74,35 @@ public class MainActivity extends Activity {
     }
 
     public void newNote (View v) {
-        Intent intent = new Intent(this,EditActivity.class);
-        intent.putExtra("noteID",Integer.toString(serial_number));
-        intent.putExtra("mode",0); // 0 stands for editing mode.
-        serial_number++;
-        startActivity(intent);
+        PopupMenu popup = new PopupMenu(MainActivity.this, v);
+        popup.getMenuInflater().inflate(R.menu.menu_note_option, popup.getMenu());
+
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int opt = item.getItemId();
+                if (opt == R.id.note) {
+                    Intent intent = new Intent(getApplicationContext(),EditActivity.class);
+                    intent.putExtra("noteID",Integer.toString(serial_number));
+                    intent.putExtra("mode",0); // 0 stands for editing mode.
+                    serial_number++;
+                    startActivity(intent);
+                } else if (opt != R.id.todo) {
+                    // intent to start a to-do list.
+                }
+                return true;
+            }
+        });
+
+        popup.show();
     }
 
     public void openNote (View v, String noteID) {
         Intent intent = new Intent(this,EditActivity.class);
-        intent.putExtra("noteID",noteID);
-        intent.putExtra("mode",1); //  stands for viewing mode.
+        intent.putExtra("noteID", noteID);
+        intent.putExtra("mode", 1); //  stands for viewing mode.
         startActivity(intent);
     }
-
-    //Adapater to content new notes TODO
-
 
     @Override
     public void onPause() {

@@ -5,4 +5,7 @@
 
     <string name="hint_for_content_input">Please write your main content of the note here...</string>
     <string name="hint_for_heading_input">Please write your heading of the note here...</string>
+    <string name="title_activity_todo">TODOActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>

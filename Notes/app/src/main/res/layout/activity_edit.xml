@@ -24,7 +24,7 @@
         android:textSize="24sp"
         android:textColor="#EEEEEE"
         android:textColorHint="#EEEEEE"
-        android:background="@drawable/note_heading_ve_mode"
+        android:background="#01579B"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="5dp"
@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:background="@drawable/note_content_ve_mode"
+        android:background="#E0F2F1"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="10dp"
@@ -48,35 +48,17 @@
         android:gravity="top"
         android:textCursorDrawable="@null"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.6"
-        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/saveEditBtn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="SAVE"
-            android:background="#DDDDDD"
+            android:id="@+id/optionEditBtn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:text="Options..."
+            android:background="#222222"
             android:textSize="20sp"
-            android:textColor="#000000"
-            android:onClick="saveNote"/>
+            android:textColor="#DDDDDD" />
 
-        <Button
-            android:id="@+id/deleteEditBtn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="DELETE"
-            android:background="#DDDDDD"
-            android:textSize="20sp"
-            android:textColor="#ff0000"
-            android:onClick="deleteNote"/>
-
-    </LinearLayout>
     </LinearLayout>
 
 
@@ -98,7 +80,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:textColor="#EEEEEE"
-            android:background="@drawable/note_heading_ve_mode"
+            android:background="#01579B"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="5dp"
@@ -111,7 +93,7 @@
             android:layout_height="0dp"
             android:layout_weight="5"
             android:textColor="#444444"
-            android:background="@drawable/note_content_ve_mode"
+            android:background="#E0F2F1"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="10dp"
@@ -132,6 +114,7 @@
                 android:text="EDIT"
                 android:background="#DDDDDD"
                 android:textSize="20sp"
+                android:textColor="#222222"
                 android:onClick="editNote"/>
 
             <Button
@@ -142,7 +125,7 @@
                 android:text="DELETE"
                 android:background="#DDDDDD"
                 android:textSize="20sp"
-                android:textColor="#ff0000"
+                android:textColor="#FF0000"
                 android:onClick="deleteNote"/>
         </LinearLayout>
 
