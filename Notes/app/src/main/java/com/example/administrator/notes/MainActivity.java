@@ -87,8 +87,10 @@ public class MainActivity extends Activity {
                     intent.putExtra("mode",0); // 0 stands for editing mode.
                     serial_number++;
                     startActivity(intent);
-                } else if (opt != R.id.todo) {
+                } else if (opt == R.id.todo) {
                     // intent to start a to-do list.
+                    Intent intent_todo = new Intent(getApplicationContext(), TODOActivity.class);
+                    startActivity(intent_todo);
                 }
                 return true;
             }

@@ -19,11 +19,14 @@
         <activity
             android:name=".EditActivity"
             android:label="@string/title_activity_edit"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustNothing">
         </activity>
         <activity
             android:name=".TODOActivity"
-            android:label="@string/title_activity_todo" >
+            android:label="@string/title_activity_todo"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustNothing">
         </activity>
     </application>
 
