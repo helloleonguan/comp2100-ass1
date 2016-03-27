@@ -16,6 +16,7 @@
         android:textColor="#222222"
         android:textSize="22sp"
         android:background="#4CAF50"
+        android:paddingLeft="10dp"
         android:textCursorDrawable="@null"
         android:maxLines="2"/>
 
@@ -34,6 +35,7 @@
             android:textColor="#444444"
             android:textSize="18sp"
             android:background="#AED581"
+            android:paddingLeft="10dp"
             android:textCursorDrawable="@null"
             android:maxLines="2"/>
 
@@ -55,7 +57,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8"
+        android:layout_weight="7"
         android:scrollbars="vertical">
 
         <LinearLayout
@@ -65,5 +67,15 @@
             android:layout_height="match_parent"/>
 
     </ScrollView>
+
+    <Button
+        android:id="@+id/optionTodoBtn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:text="Options..."
+        android:background="#222222"
+        android:textSize="20sp"
+        android:textColor="#DDDDDD" />
 
 </LinearLayout>

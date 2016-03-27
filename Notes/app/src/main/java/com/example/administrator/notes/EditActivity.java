@@ -89,6 +89,8 @@ public class EditActivity extends Activity {
                             });
                             builder.create();
                             builder.show();
+                        } else {
+                            return false;
                         }
 
                         return true;
