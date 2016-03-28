@@ -1,5 +1,12 @@
 package com.example.administrator.notes;
 
+//        Author: Liyang(Leon) Guan
+//        Uni ID: u5684206
+//        Declaration: The following code is written all by myself.
+
+// In this activity, I am trying to take a method-oriented approach.
+// Almost every action is defined as a method. This is very easy to modularize an activity.
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -45,6 +52,7 @@ public class TODOActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo);
 
+        // Get the serial number from Intent.
         listID = getIntent().getStringExtra("listID");
 
         etTitle = (EditText) findViewById(R.id.editTextForTitle);
@@ -54,6 +62,7 @@ public class TODOActivity extends Activity {
         llList = (LinearLayout) findViewById(R.id.linearListOfEntries);
         bAdd = (Button) findViewById(R.id.addEntryBtn);
         bOptions = (Button) findViewById(R.id.optionTodoBtn);
+        // Set popupMenu to the options button.
         bOptions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +92,7 @@ public class TODOActivity extends Activity {
 
     }
 
+    // Add entry when the 'Add' button is pressed.
     public void addEntry(View v) {
         if(!etEntry.getText().toString().equals("")) {
             createEntry(v,etEntry.getText().toString(),false);
@@ -90,6 +100,8 @@ public class TODOActivity extends Activity {
         }
     }
 
+
+    // Create an entry View to the list dynamically.
     public void createEntry(View v, String item_txt, boolean isChecked) {
         final CheckBox cbTemp = new CheckBox(getApplicationContext());
         cbTemp.setText(item_txt);
@@ -144,6 +156,7 @@ public class TODOActivity extends Activity {
         llList.addView(cbTemp);
     }
 
+    // Save the list to the file. List is stored as "Apple|0|Banana|1|" where '|' is the separator, '0' stands for unchecked and '1' stands for checked.
     public void saveList() {
         if (etTitle.getText().toString().equals("")) {
             Toast.makeText(this, "The title is empty. Can't save list.", Toast.LENGTH_SHORT).show();
@@ -170,6 +183,7 @@ public class TODOActivity extends Activity {
         }
     }
 
+    // Update the list from data stored in file.
     public void updateList() {
         SharedPreferences todo_data = getSharedPreferences(MainActivity.TODO_FILE_NAME, MODE_PRIVATE);
         etTitle.setText(todo_data.getString(listID + "title",""));
@@ -189,6 +203,7 @@ public class TODOActivity extends Activity {
         }
     }
 
+    // Delete the whole list from storage and reset the activity.
     public void deleteList() {
         SharedPreferences todo_data = getSharedPreferences(MainActivity.TODO_FILE_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = todo_data.edit();
@@ -202,12 +217,14 @@ public class TODOActivity extends Activity {
         llList.removeAllViews();
     }
 
+    // Update the list when it is onResume.
     @Override
     public void onResume() {
         updateList();
         super.onResume();
     }
 
+    // Parse the String stored in file.
     public ArrayList<String> parseListString(String s) {
          ArrayList<String> rst = new ArrayList<>();
 

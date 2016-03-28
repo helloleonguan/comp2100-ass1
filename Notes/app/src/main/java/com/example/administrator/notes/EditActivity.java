@@ -1,17 +1,21 @@
 package com.example.administrator.notes;
 
-import android.app.Activity;
+
+//        Author: Liyang(Leon) Guan
+//        Uni ID: u5684206
+//        Declaration: The following code is written all by myself.
+
+
+
+        import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -21,9 +25,11 @@ import android.widget.Toast;
 
 public class EditActivity extends Activity {
 
+    //Variable declarations.
     public String noteID;
     public int colorFlag = 0;
 
+    // Views used in this Activity
     LinearLayout edit;
     LinearLayout view;
 
@@ -41,9 +47,10 @@ public class EditActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
+        int mode; // if it's 0, then editing mode. If it's 1, then viewing mode. Otherwise, error.
+
         SharedPreferences data = getSharedPreferences(MainActivity.FILE_NAME, MODE_PRIVATE);
 
-        int mode; // if it's 0, then editing mode. If it's 1, then viewing mode. Otherwise, error.
 
         noteID = getIntent().getStringExtra("noteID");
         colorFlag = data.getInt(noteID + MainActivity.NOTE_COLOR, 0);
@@ -55,6 +62,7 @@ public class EditActivity extends Activity {
         etHeading = (EditText) findViewById(R.id.EditTextForHeading);
         etContent = (EditText) findViewById(R.id.EditTextForMainContent);
         optionEditMenu = (Button) findViewById(R.id.optionEditBtn);
+        // Set popupMenu to the button.
         optionEditMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,10 +114,12 @@ public class EditActivity extends Activity {
         editViewButton = (Button) findViewById(R.id.editViewBtn);
         deleteViewButton = (Button) findViewById(R.id.deleteViewBtn);
 
+        // Make textViews scrollable.
         tvHeading.setMovementMethod(new ScrollingMovementMethod());
         tvContent.setMovementMethod(new ScrollingMovementMethod());
 
 
+        // Enable different modes according to the 'mode' variable.
         if (mode == 0) {
             //Editing mode
             edit.setVisibility(View.VISIBLE);
@@ -131,6 +141,8 @@ public class EditActivity extends Activity {
 
     }
 
+
+    // Save the note to storage and enable viewing mode.
     public void saveNote(View v) {
         if (etHeading.getText().toString().equals("") && etContent.getText().toString().equals("") && edit.getVisibility() == View.VISIBLE) {
             Toast.makeText(this, "Note has not been saved because it is empty.", Toast.LENGTH_SHORT).show();
@@ -159,6 +171,7 @@ public class EditActivity extends Activity {
 
     }
 
+    // Enable editing mode.
     public void editNote(View v) {
         SharedPreferences data = getSharedPreferences(MainActivity.FILE_NAME, MODE_PRIVATE);
 
@@ -172,6 +185,7 @@ public class EditActivity extends Activity {
 
     }
 
+    // Delete the note from storage and reset editTexts.
     public void deleteNote(View v) {
         SharedPreferences data = getSharedPreferences(MainActivity.FILE_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = data.edit();
@@ -190,6 +204,7 @@ public class EditActivity extends Activity {
         Toast.makeText(this, "Note has been deleted!", Toast.LENGTH_SHORT).show();
     }
 
+    // Get color from the encoding integer.
     public static int[] fetchColor(int color) {
         int[] color_scheme = new int[2];
         switch(color) {
@@ -214,6 +229,8 @@ public class EditActivity extends Activity {
         return color_scheme;
     }
 
+
+    // Make sure when you exit this activity the note is saved.
     @Override
     public void onPause() {
         saveNote(edit);

@@ -1,5 +1,12 @@
 package com.example.administrator.notes;
 
+//        Author: Liyang(Leon) Guan
+//        Uni ID: u5684206
+//        Declaration: The following code is written all by myself.
+
+// In this activity, I am trying to take a life-cycle-oriented approach.
+// So most of storing data and updating data from storage are defined at certain stages (e.g. onResume onPause) of the program.
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,14 +25,19 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends Activity {
+
+    // Constant declaration
     public static final String FILE_NAME = "MyNotes";
     public static final String TODO_FILE_NAME = "MyTodoLists";
     public static final String NOTE_HEADING = "heading";
     public static final String NOTE_CONTENT = "content";
     public static final String NOTE_COLOR = "color";
+
+    // Serial numbers for notes and to-do lists.
     public int serial_number_for_notes;
     public int serial_number_for_todo_lists;
 
+    // Views used in this activity.
     GridView gridview;
     GridView todoGridView;
 
@@ -37,21 +49,22 @@ public class MainActivity extends Activity {
         gridview = (GridView) findViewById(R.id.notesGrid);
         todoGridView = (GridView) findViewById(R.id.listsGrid);
 
+        // Get previous serial numbers stored in files.
         SharedPreferences data = getSharedPreferences(MainActivity.FILE_NAME, MODE_PRIVATE);
         serial_number_for_notes = data.getInt("serial_number_for_notes",0);
         SharedPreferences todo_data = getSharedPreferences(MainActivity.TODO_FILE_NAME, MODE_PRIVATE);
         serial_number_for_todo_lists = todo_data.getInt("serial_number_for_todo_lists", 0);
 
-//        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-//        SharedPreferences.Editor editor = settings.edit();
-
 
     }
 
 
+    // Update the lists in both GridViews when it is onResume.
     @Override
     public void onResume() {
         super.onResume();
+
+        //Update the notes.
         SharedPreferences data = getSharedPreferences(MainActivity.FILE_NAME, MODE_PRIVATE);
         serial_number_for_notes = data.getInt("serial_number_for_notes",0);
 
@@ -79,6 +92,7 @@ public class MainActivity extends Activity {
         });
 
 
+        // Update the to-do lists.
         SharedPreferences todo_data = getSharedPreferences(MainActivity.TODO_FILE_NAME, MODE_PRIVATE);
         serial_number_for_todo_lists = todo_data.getInt("serial_number_for_todo_lists", 0);
 
@@ -107,6 +121,8 @@ public class MainActivity extends Activity {
 
     }
 
+
+    // Events associated with the 'NEW' button.
     public void newNote (View v) {
         PopupMenu popup = new PopupMenu(MainActivity.this, v);
         popup.getMenuInflater().inflate(R.menu.menu_note_option, popup.getMenu());
@@ -136,6 +152,7 @@ public class MainActivity extends Activity {
         popup.show();
     }
 
+    // Start the EditActivity for editing note.
     public void openNote (View v, String noteID) {
         Intent intent = new Intent(this,EditActivity.class);
         intent.putExtra("noteID", noteID);
@@ -143,12 +160,15 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
+    // Start the TODOActivity for editing to-do list.
     public void openList (View v, String listID) {
         Intent intent_todo = new Intent(this, TODOActivity.class);
         intent_todo.putExtra("listID", listID);
         startActivity(intent_todo);
     }
 
+
+    // Store both serial numbers when it is onPause.
     @Override
     public void onPause() {
         super.onPause();
