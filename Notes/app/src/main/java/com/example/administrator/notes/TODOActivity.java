@@ -225,7 +225,7 @@ public class TODOActivity extends Activity {
     }
 
     // Parse the String stored in file.
-    public ArrayList<String> parseListString(String s) {
+    static public ArrayList<String> parseListString(String s) {
          ArrayList<String> rst = new ArrayList<>();
 
         while (!s.equals("")) {

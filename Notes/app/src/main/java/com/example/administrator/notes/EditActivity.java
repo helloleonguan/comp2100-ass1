@@ -7,7 +7,7 @@ package com.example.administrator.notes;
 
 
 
-        import android.app.Activity;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -22,6 +22,8 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+
+        import dalvik.annotation.TestTarget;
 
 public class EditActivity extends Activity {
 
@@ -228,6 +230,7 @@ public class EditActivity extends Activity {
 
         return color_scheme;
     }
+
 
 
     // Make sure when you exit this activity the note is saved.
